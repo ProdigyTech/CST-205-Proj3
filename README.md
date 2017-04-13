@@ -1,5 +1,10 @@
 Some starter code for React on Flask.
 
+## Clone the repo!
+
+git clone 
+
+
 ## Upgrade Node version to 6
 
 ```$ nvm install 6```
