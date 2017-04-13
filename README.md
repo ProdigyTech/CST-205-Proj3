@@ -2,7 +2,11 @@ Some starter code for React on Flask.
 
 ## Clone the repo!
 
-git clone 
+git clone https://github.com/ProdigyTech/CST-205-Proj3.git
+
+## Change your working directory to the cloned repo
+
+$ cd CST-205-Proj3
 
 
 ## Upgrade Node version to 6
