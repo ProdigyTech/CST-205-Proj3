@@ -1,5 +1,3 @@
-# lecture6-thuhe
-
 Some starter code for React on Flask.
 
 ## Upgrade Node version to 6
@@ -38,7 +36,3 @@ Click on the green button on `app.py`, or open up a new terminal and type:
 
 ```$ python app.py```
 
-## Confused?
-
-I'll explain what all this does in a bit. For now, use it as a starter to
-write some React code.
