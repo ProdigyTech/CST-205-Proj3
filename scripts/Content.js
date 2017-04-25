@@ -44,7 +44,7 @@ document.getElementById("sendMessageBox").value = " ";
             (n, index) => 
                 <p key={index}><b>{n.message}</b>
                  <audio controls autoPlay>
-                <source src={n.mediaLink} type="audio/mp3"></source></audio>
+                <source src={n.mediaLink} type="audio/mp3" preload="none"></source></audio>
                 </p>
             );
 
