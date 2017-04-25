@@ -1,6 +1,6 @@
 
 from gtts import gTTS
-from flask import Flask, send_file
+from flask import Flask, send_file, make_response
 from flask import g, session, request, url_for, flash
 from flask import redirect, render_template
 import os, flask, flask_socketio 
@@ -11,8 +11,7 @@ app = flask.Flask(__name__)
 socketio = flask_socketio.SocketIO(app)
 
 messageList = [];
-music_dir = '/home/ubuntu/workspace/CST-205-Project3/templates/media/'
-
+music_dir = os.getcwd() + '/templates/media/'
 
 @socketio.on('connect')
 def on_connect():
@@ -41,14 +40,20 @@ def index():
                         title = 'Home',
                         music_files_number = music_files_number,
                         music_files = music_files)
+                        
+                        
 @app.route('/media/<filename>')
 def song(filename):
     name = filename
-    return send_file(
-         music_dir, 
+    response = make_response(send_file(
+         music_dir + filename, 
          mimetype="audio/mp3", 
          as_attachment=True, 
-         attachment_filename="filename")
+         attachment_filename="filename"))
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 
     #return render_template('play.html',
                       #  title = filename,
