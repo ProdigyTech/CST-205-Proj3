@@ -32,7 +32,9 @@ chatbot = ChatBot("TwitterBot",
     trainer="chatterbot.trainers.TwitterTrainer"
 )
 
+print("Starting the twitter training")
 chatbot.train()
+print("Finished training")
 
 chatbot.logger.info('Trained database generated successfully!')
 
