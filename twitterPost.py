@@ -13,4 +13,4 @@ api = tweepy.API(auth)
 
 tweet = "Another test using a string"
 
-api.update_status(tweet)
+# api.update_status(tweet)
