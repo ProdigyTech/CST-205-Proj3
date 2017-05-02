@@ -5,16 +5,36 @@ from flask import redirect, render_template
 import os, flask, flask_socketio 
 import time
 from chatterbot import ChatBot
+from settings import TWITTER
 
-responses = ["hello", "hi", "Who did you vote for?", "TRUMP 2016", "Who did it?", "The russians!", "MAGA", "MAKE AMERICA GREAT AGAIN", "TRUMPs favroite chat", "Build that wall", "what is your name", "Jason", "Do you feel love?", "I'm a robot you idiot"]
+#responses = ["hello", "hi", "Who did you vote for?", "TRUMP 2016", "Who did it?", "The russians!", "MAGA", "MAKE AMERICA GREAT AGAIN", "TRUMPs favroite chat", "Build that wall", "what is your name", "Jason", "Do you feel love?", "I'm a robot you idiot"]
 
-chatbot = ChatBot(
-   'Ron Obvious',
-    trainer='chatterbot.trainers.ListTrainer'
-)
+#chatbot = ChatBot(
+  # 'Ron Obvious',
+   # trainer='chatterbot.trainers.ListTrainer'
+#)
 
 #Train based on the english corpus
-chatbot.train(responses)
+#chatbot.train(responses)
+
+
+chatbot = ChatBot("TwitterBot",
+    logic_adapters=[
+        "chatterbot.logic.BestMatch"
+    ],
+    input_adapter="chatterbot.input.TerminalAdapter",
+    output_adapter="chatterbot.output.TerminalAdapter",
+    database="./twitter-database.db",
+    twitter_consumer_key=TWITTER["CONSUMER_KEY"],
+    twitter_consumer_secret=TWITTER["CONSUMER_SECRET"],
+    twitter_access_token_key=TWITTER["ACCESS_TOKEN"],
+    twitter_access_token_secret=TWITTER["ACCESS_TOKEN_SECRET"],
+    trainer="chatterbot.trainers.TwitterTrainer"
+)
+
+chatbot.train()
+
+chatbot.logger.info('Trained database generated successfully!')
 
 app = flask.Flask(__name__)
 socketio = flask_socketio.SocketIO(app)
