@@ -1,9 +1,17 @@
 import * as React from 'react';
-import { Socket } from './Socket';
+import {
+    Socket
+}
+from './Socket';
+
+import {
+    Navbar,
+    Jumbotron,
+    Button
+}
+from 'react-bootstrap';
 
 
-
- 
 
 
 var login = false;
@@ -11,94 +19,129 @@ export class Content extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        
-        messageHolder : [],
+
+            messageHolder: [],
         };
-     
+
     }
-    
+
     componentDidMount() {
-           Socket.on('passedMessageList', (data) => {
-        this.setState({
-        messageHolder : data,
+        Socket.on('passedMessageList', (data) => {
+            this.setState({
+                messageHolder: data,
+            });
+            console.log(data);
         });
-        console.log(data);
-    });
     }
 
 
 
-handleSubmit(event) {
-event.preventDefault();
-var message = document.getElementById("sendMessageBox").value;
-console.log(message);
-Socket.emit('newMessage', message);
-document.getElementById("sendMessageBox").value = " ";
-}
+    handleSubmit(event) {
+        event.preventDefault();
+        var message = document.getElementById("sendMessageBox").value;
+        console.log(message);
+        Socket.emit('newMessage', message);
+        document.getElementById("sendMessageBox").value = " ";
+    }
 
-   
+
 
 
     render() {
         let messageData = this.state.messageHolder.map(
-            (n, index) => 
-                <p key={index}><b>{n.message}</b>
-                 <audio controls autoPlay>
-                <source src={n.mediaLink} type="audio/mp3" preload="none"></source></audio>
-                </p>
-            );
+            (n, index) =>
+            // <p key={index}>
+            <div key={index} className="">
+                    <div className="right userMessage">
+                        <div className="talk-bubble tri-right round border right-top">
+                          <div className="talktext">
+                            <b>{n.message}</b>
+                          </div>
+                        </div>
+                    </div>
+                    <div className="">
+                        <div className="talk-bubble tri-right round border left-top talk-bubble-voice">
+                          <div className="talktext">
+                            <audio controls autoPlay>
+                        <source src={n.mediaLink} type="audio/mp3" preload="none"></source></audio>
+                          </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            // </p>
+        );
 
         return (
-         
-         
-<div>
-            <form onSubmit={this.handleSubmit}>
-            <br />
-           
-             
-                <h1>ChatBot Chat!</h1>
+
+
             <div>
+
+            <div className="jumbotron jumbotron-fluid">
+              
+            </div>
+            <div className="container">
+            <h1 className="center">ChatBot Chat!</h1>
+            
+            
+              </div>
+
+            <form onSubmit={this.handleSubmit} className="form-inline">
+            
+             
+                
+                
+            <div className="container scrollable">
             {messageData}
             </div>
-                <input name="text" size="80" id="sendMessageBox" placeholder="enter message here"/>
-                         <SubButton /> <br />
+            
+            <div className="row">
+            <div className="bottom-right margin col-md-offset-6">
+            <div className="form-group">
+      <input type="text" className="form-control" size="80" id="sendMessageBox" placeholder="Enter message here" />
+        <SubButton /> <br />
+    </div>
+                
+                         
+            </div>
+            </div>
        
                 </form>
-              
            
      
          
                  </div>
+
+
         );
-    }}
-    
+    }
+}
+
 export class SubButton extends React.Component {
     render() {
         return (
-            
-                <button>Send it!</button>
-           
+
+            <button className="btn btn-primary">Send it!</button>
+
+
         );
     }
 }
 export class ConnButton extends React.Component {
     render() {
         return (
-            
-                <button>Connect to chat!</button>
-           
+
+            <button>Connect to chat!</button>
+
         );
     }
 }
-  export class DisConnButton extends React.Component {
+export class DisConnButton extends React.Component {
     render() {
         return (
-            
-                <button>Disconnect from chat!</button>
-           
+
+            <button>Disconnect from chat!</button>
+
         );
     }
 }
-  
-  
-    
