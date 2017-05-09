@@ -6,37 +6,103 @@ import os, flask, flask_socketio
 import time
 from chatterbot import ChatBot
 from settings import TWITTER
+from chatterbot.trainers import ListTrainer
 
 #responses = ["hello", "hi", "Who did you vote for?", "TRUMP 2016", "Who did it?", "The russians!", "MAGA", "MAKE AMERICA GREAT AGAIN", "TRUMPs favroite chat", "Build that wall", "what is your name", "Jason", "Do you feel love?", "I'm a robot you idiot"]
 
-#chatbot = ChatBot(
-  # 'Ron Obvious',
-   # trainer='chatterbot.trainers.ListTrainer'
-#)
+chatbot = ChatBot(
+   'Ron Obvious',
+    trainer='chatterbot.trainers.ChatterBotCorpusTrainer',
+    read_only=True,
+)
+chatbot.train("chatterbot.corpus.english.conversations")
+chatbot.train("chatterbot.corpus.english.conversations")
+chatbot.train("chatterbot.corpus.english.greetings")
+
+chatbot.set_trainer(ListTrainer)
+chatbot.train("twitter_training.json")
+
+
+chatbot.train([
+    "How are you?",
+    "I am good.",
+    "That is good to hear.",
+    "Thank you",
+    "You are welcome.",
+])
+
+chatbot.train([
+    "Do you feel love?",
+    "I did until I had my heart broken",
+    "Who broke your heart?.",
+    "A botnet named Kris",
+    "Sad"
+    "It's ok,  I don't feel anymore.",
+])
+chatbot.train([
+    "What is your name",
+    "XJ9 BOT",
+    "Who are your parents",
+    "I only have one creator. His name is Javar",
+    "Where were you born?",
+     "I was born in Seaside CA, at California State University Monterey Bay",
+     "When is your birthday?",
+     "Sometime in May",
+])
+
+chatbot.train([
+    "TRUMP",
+    "You mean Satan?",
+    "Trump is not satan",
+    "Ok, he is the anti-christ",
+    "that's not nice",
+     "The anti christ isn't nice. so what's your point",
+     "You're mean",
+     "Yup",
+])
+
+chatbot.train({
+ "Who is your favorite actor?",
+ "I like Harrison Ford",
+ "He's actually not a car, he is an actor.",
+ "Are you sure that's true?",
+ "Yes, I have seen him in lots of movies.",
+ "fine then"
+})
+
+chatbot.train({
+ "Do you think I'm fat?",
+ "im glad youre fat"
+})
+chatbot.train({
+ "Mean Girls",
+ "Four for you Glen Coco, You GO Glen Coco!"
+})
+
 
 #Train based on the english corpus
 #chatbot.train(responses)
 
 
-chatbot = ChatBot("TwitterBot",
-    logic_adapters=[
-        "chatterbot.logic.BestMatch"
-    ],
-    input_adapter="chatterbot.input.TerminalAdapter",
-    output_adapter="chatterbot.output.TerminalAdapter",
-    database="./twitter-database.db",
-    twitter_consumer_key=TWITTER["CONSUMER_KEY"],
-    twitter_consumer_secret=TWITTER["CONSUMER_SECRET"],
-    twitter_access_token_key=TWITTER["ACCESS_TOKEN"],
-    twitter_access_token_secret=TWITTER["ACCESS_TOKEN_SECRET"],
-    trainer="chatterbot.trainers.TwitterTrainer"
-)
+#chatbot = ChatBot("TwitterBot",
+ #   logic_adapters=[
+  #      "chatterbot.logic.BestMatch"
+   # ],
+    #input_adapter="chatterbot.input.TerminalAdapter",
+    #output_adapter="chatterbot.output.TerminalAdapter",
+    #database="./twitter-database.db",
+    #twitter_consumer_key=TWITTER["CONSUMER_KEY"],
+    #twitter_consumer_secret=TWITTER["CONSUMER_SECRET"],
+    #twitter_access_token_key=TWITTER["ACCESS_TOKEN"],
+    #twitter_access_token_secret=TWITTER["ACCESS_TOKEN_SECRET"],
+    #trainer="chatterbot.trainers.TwitterTrainer"
+#)
 
-print("Starting the twitter training")
-chatbot.train()
-print("Finished training")
+#print("Starting the twitter training")
+#chatbot.train()
+#print("Finished training")
 
-chatbot.logger.info('Trained database generated successfully!')
+#chatbot.logger.info('Trained database generated successfully!')
 
 app = flask.Flask(__name__)
 socketio = flask_socketio.SocketIO(app)
