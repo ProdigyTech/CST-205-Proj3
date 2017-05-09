@@ -1,11 +1,42 @@
-
 from gtts import gTTS
 from flask import Flask, send_file, make_response
 from flask import g, session, request, url_for, flash
 from flask import redirect, render_template
 import os, flask, flask_socketio 
 import time
+from chatterbot import ChatBot
+from settings import TWITTER
 
+#responses = ["hello", "hi", "Who did you vote for?", "TRUMP 2016", "Who did it?", "The russians!", "MAGA", "MAKE AMERICA GREAT AGAIN", "TRUMPs favroite chat", "Build that wall", "what is your name", "Jason", "Do you feel love?", "I'm a robot you idiot"]
+
+#chatbot = ChatBot(
+  # 'Ron Obvious',
+   # trainer='chatterbot.trainers.ListTrainer'
+#)
+
+#Train based on the english corpus
+#chatbot.train(responses)
+
+
+chatbot = ChatBot("TwitterBot",
+    logic_adapters=[
+        "chatterbot.logic.BestMatch"
+    ],
+    input_adapter="chatterbot.input.TerminalAdapter",
+    output_adapter="chatterbot.output.TerminalAdapter",
+    database="./twitter-database.db",
+    twitter_consumer_key=TWITTER["CONSUMER_KEY"],
+    twitter_consumer_secret=TWITTER["CONSUMER_SECRET"],
+    twitter_access_token_key=TWITTER["ACCESS_TOKEN"],
+    twitter_access_token_secret=TWITTER["ACCESS_TOKEN_SECRET"],
+    trainer="chatterbot.trainers.TwitterTrainer"
+)
+
+print("Starting the twitter training")
+chatbot.train()
+print("Finished training")
+
+chatbot.logger.info('Trained database generated successfully!')
 
 app = flask.Flask(__name__)
 socketio = flask_socketio.SocketIO(app)
@@ -20,7 +51,7 @@ def on_connect():
 @socketio.on("newMessage")
 def handle_message(messageData):
     passedContents = messageData
-    tts = gTTS(text=passedContents, lang='en')
+    tts = gTTS(text=str(chatbot.get_response(passedContents)), lang='en')
     tts.save("templates/media/sentMessage.mp3")
     mediaLink  = "/media/sentMessage.mp3"
     messageList.append({
