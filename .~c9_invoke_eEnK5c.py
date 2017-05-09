@@ -79,6 +79,7 @@ chatbot.train({
  "Four for you Glen Coco, You GO Glen Coco!"
 })
 
+
 #Train based on the english corpus
 #chatbot.train(responses)
 
