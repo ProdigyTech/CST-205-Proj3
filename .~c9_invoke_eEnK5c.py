@@ -7,7 +7,6 @@ import time
 from chatterbot import ChatBot
 from settings import TWITTER
 from chatterbot.trainers import ListTrainer
-import twitterPost
 
 #responses = ["hello", "hi", "Who did you vote for?", "TRUMP 2016", "Who did it?", "The russians!", "MAGA", "MAKE AMERICA GREAT AGAIN", "TRUMPs favroite chat", "Build that wall", "what is your name", "Jason", "Do you feel love?", "I'm a robot you idiot"]
 
@@ -80,16 +79,6 @@ chatbot.train({
  "Four for you Glen Coco, You GO Glen Coco!"
 })
 
-def initMessage():
-   tts = gTTS(text=str("Hello, I am pie-Bot! Talk to me, make me smater. I can send tweets to twitter, to start type the word tweet and then what you want me to say"), lang='en')
-   tts.save("templates/media/sentMessage.mp3")
-   mediaLink  = "/media/sentMessage.mp3"
-   messageList.append({
-       'message' :"I can send tweets to twitter, to start type the word tweet and then what you want me to say",
-       'socket'  : 0000,
-       'mediaLink' : mediaLink
-       })
-   socketio.emit('passedMessageList', messageList )
 
 #Train based on the english corpus
 #chatbot.train(responses)
@@ -120,7 +109,7 @@ socketio = flask_socketio.SocketIO(app)
 
 messageList = [];
 music_dir = os.getcwd() + '/templates/media/'
-initMessage()
+
 @socketio.on('connect')
 def on_connect():
  print 'Someone connected!'
@@ -128,31 +117,17 @@ def on_connect():
 @socketio.on("newMessage")
 def handle_message(messageData):
     passedContents = messageData
-    if ('tweet' in passedContents):
-        tweetToSend =  passedContents[5:]
-        tts = gTTS(text=str("Tweet sent to twitter, check it out"), lang='en')
-        tts.save("templates/media/sentMessage.mp3")
-        mediaLink  = "/media/sentMessage.mp3"
-        messageList.append({
-            'message' :passedContents,
-            'socket'  : request.sid,
-            'mediaLink' : mediaLink
-            })
-        twitterPost.sendTweet(tweetToSend)
-        socketio.emit('passedMessageList', messageList )
-        print messageList
-    else:
-     tts = gTTS(text=str(chatbot.get_response(passedContents)), lang='en')
-     tts.save("templates/media/sentMessage.mp3")
-     mediaLink  = "/media/sentMessage.mp3"
-     messageList.append({
-         'message' :passedContents,
-         'socket'  : request.sid,
-         'mediaLink' : mediaLink
-         })
-     socketio.emit('passedMessageList', messageList )
-     print messageList
-  
+    tts = gTTS(text=str(chatbot.get_response(passedContents)), lang='en')
+    tts.save("templates/media/sentMessage.mp3")
+    mediaLink  = "/media/sentMessage.mp3"
+    messageList.append({
+        'message' :passedContents,
+        'socket'  : request.sid,
+        'mediaLink' : mediaLink
+        })
+    socketio.emit('passedMessageList', messageList )
+    print messageList
+ 
 
 @app.route("/")
 def index():
