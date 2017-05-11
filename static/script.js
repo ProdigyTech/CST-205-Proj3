@@ -30394,18 +30394,31 @@ var Content = exports.Content = function (_React$Component) {
                     { className: 'container' },
                     React.createElement(
                         'h1',
-                        { className: 'center' },
+                        { className: 'center title' },
                         'ChatBot Chat!'
                     )
                 ),
                 React.createElement(
-                    'form',
-                    { onSubmit: this.handleSubmit, className: 'form-inline' },
+                    'div',
+                    { className: 'container scrollable' },
                     React.createElement(
                         'div',
-                        { className: 'container scrollable' },
-                        messageData
+                        { className: 'talk-bubble tri-right round border left-top talk-bubble-voice' },
+                        React.createElement(
+                            'div',
+                            { className: 'talktext' },
+                            React.createElement(
+                                'b',
+                                null,
+                                'I can send tweets to twitter, to start type the word tweet and then what you want me to say'
+                            )
+                        )
                     ),
+                    messageData
+                ),
+                React.createElement(
+                    'form',
+                    { onSubmit: this.handleSubmit, className: 'form-inline' },
                     React.createElement(
                         'div',
                         { className: 'row' },
