@@ -133,13 +133,16 @@ def handle_message(messageData):
         tts = gTTS(text=str("Tweet sent to twitter, check it out"), lang='en')
         tts.save("templates/media/sentMessage.mp3")
         mediaLink  = "/media/sentMessage.mp3"
+        
+        twitterPost.sendTweet(tweetToSend)
         messageList.append({
             'message' :passedContents,
             'socket'  : request.sid,
-            'mediaLink' : mediaLink
+            'mediaLink' : mediaLink,
+            'twitterLink': twitterPost.getRecentTweetLink()
             })
-        twitterPost.sendTweet(tweetToSend)
         socketio.emit('passedMessageList', messageList )
+        print "TEST"
         print messageList
     else:
      tts = gTTS(text=str(chatbot.get_response(passedContents)), lang='en')
@@ -148,7 +151,8 @@ def handle_message(messageData):
      messageList.append({
          'message' :passedContents,
          'socket'  : request.sid,
-         'mediaLink' : mediaLink
+         'mediaLink' : mediaLink,
+         'twitterLink': ''
          })
      socketio.emit('passedMessageList', messageList )
      print messageList

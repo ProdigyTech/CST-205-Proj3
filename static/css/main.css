@@ -55,6 +55,11 @@ body {
 	color: #a7f265;
 }
 
+.tweet {
+	margin-bottom: 0px;
+	margin-top: 10px;
+}
+
 
 /* CSS talk bubble */
 .talk-bubble-voice {
