@@ -120,7 +120,7 @@ socketio = flask_socketio.SocketIO(app)
 
 messageList = [];
 music_dir = os.getcwd() + '/templates/media/'
-initMessage()
+# initMessage()
 @socketio.on('connect')
 def on_connect():
  print 'Someone connected!'
