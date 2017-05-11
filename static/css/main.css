@@ -33,15 +33,33 @@
 }
 
 body {
-    background-color: #526dcc;
+    /*background-color: #526dcc;*/
+    /*https://tctechcrunch2011.files.wordpress.com/2016/05/robot-customer-service.png?w=738*/
+    background:  url(../img/robot-customer-service-dark.png) center center fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
 }
 
+.form-inline {
+	margin-bottom: 0px;
+}
+
+.see-through {
+	background: rgba(22, 22, 22, 0.6);
+}
+
+.title {
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-weight: bold;
+	color: #a7f265;
+}
 
 
 /* CSS talk bubble */
 .talk-bubble-voice {
 	width: auto !important;
-	background-color: #f3ffe0 !important;
+	background-color: #cff09b !important;
 }
 
 .talk-bubble {
@@ -50,7 +68,7 @@ body {
   position: relative;
 	width: 500px;
 	height: auto;
-	background-color: lightyellow;
+	background-color: #f5f5a9;
 }
 .border{
   border: 8px solid #666;
@@ -85,7 +103,7 @@ body {
   top: 0px;
 	bottom: auto;
 	border: 22px solid;
-	border-color: #f3ffe0 transparent transparent transparent;
+	border-color: #cff09b transparent transparent transparent;
 }
 
 /* Right triangle placed top right flush. */
@@ -111,7 +129,7 @@ body {
   top: 0px;
 	bottom: auto;
 	border: 20px solid;
-	border-color: lightyellow transparent transparent transparent;
+	border-color: #f5f5a9 transparent transparent transparent;
 }
 
 /* talk bubble contents */
