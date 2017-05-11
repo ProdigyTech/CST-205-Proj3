@@ -28050,8 +28050,65 @@ var defaultProps = {
 var DropdownMenu = function (_React$Component) {
   __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(DropdownMenu, _React$Component);
 
+<<<<<<< HEAD
+            return React.createElement(
+                'div',
+                null,
+                React.createElement('div', { className: 'jumbotron jumbotron-fluid' }),
+                React.createElement(
+                    'div',
+                    { className: 'container' },
+                    React.createElement(
+                        'h1',
+                        { className: 'center title' },
+                        'ChatBot Chat!'
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'container scrollable' },
+                    React.createElement(
+                        'div',
+                        { className: 'talk-bubble tri-right round border left-top talk-bubble-voice' },
+                        React.createElement(
+                            'div',
+                            { className: 'talktext' },
+                            React.createElement(
+                                'b',
+                                null,
+                                'I can send tweets to twitter, to start type the word tweet and then what you want me to say'
+                            )
+                        )
+                    ),
+                    messageData
+                ),
+                React.createElement(
+                    'form',
+                    { onSubmit: this.handleSubmit, className: 'form-inline' },
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(
+                            'div',
+                            { className: 'bottom-right margin col-md-offset-6' },
+                            React.createElement(
+                                'div',
+                                { className: 'form-group' },
+                                React.createElement('input', { type: 'text', className: 'form-control', size: '80', id: 'sendMessageBox', placeholder: 'Enter message here' }),
+                                React.createElement(SubButton, null),
+                                ' ',
+                                React.createElement('br', null)
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+=======
   function DropdownMenu(props) {
     __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_classCallCheck___default()(this, DropdownMenu);
+>>>>>>> master
 
     var _this = __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, _React$Component.call(this, props));
 
