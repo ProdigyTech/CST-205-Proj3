@@ -48,10 +48,54 @@ export class Content extends React.Component {
 
 
     render() {
-        let messageData = this.state.messageHolder.map(
-            (n, index) =>
-            // <p key={index}>
-            <div key={index} className="">
+        // let messageData = this.state.messageHolder.map(
+        //     (n, index) =>
+        //     // <p key={index}>
+        //     <div key={index} className="">
+        //             <div className="right userMessage">
+        //                 <div className="talk-bubble tri-right round border right-top">
+        //                   <div className="talktext">
+        //                     <b>{n.message}</b>
+        //                   </div>
+        //                 </div>
+        //             </div>
+        //             <div className="">
+        //                 <div className="talk-bubble tri-right round border left-top talk-bubble-voice">
+        //                   <div className="talktext">
+        //                     <audio controls autoPlay>
+        //                 <source src={n.mediaLink} type="audio/mp3" preload="none"></source></audio>
+        //                 <a href={n.twitterLink} target="_blank">Tweet link</a>
+        //                   </div>
+        //                 </div>
+                        
+        //             </div>
+        //         </div>
+        //     // </p>
+        // );
+        
+        let messageData = this.state.messageHolder.map(function(n, index) {   
+            if (n.twitterLink) {
+                return <div key={index} className="">
+                    <div className="right userMessage">
+                        <div className="talk-bubble tri-right round border right-top">
+                          <div className="talktext">
+                            <b>{n.message}</b>
+                          </div>
+                        </div>
+                    </div>
+                    <div className="">
+                        <div className="talk-bubble tri-right round border left-top talk-bubble-voice">
+                          <div className="talktext">
+                            <audio controls autoPlay>
+                        <source src={n.mediaLink} type="audio/mp3" preload="none"></source></audio>
+                        <p className="tweet"><b><a href={n.twitterLink} target="_blank">Tweet link</a></b></p>
+                          </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            } else {
+                return <div key={index} className="">
                     <div className="right userMessage">
                         <div className="talk-bubble tri-right round border right-top">
                           <div className="talktext">
@@ -69,8 +113,9 @@ export class Content extends React.Component {
                         
                     </div>
                 </div>
-            // </p>
-        );
+            }
+            
+        }.bind(this));
 
         return (
 
