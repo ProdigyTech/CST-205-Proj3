@@ -11,8 +11,18 @@ import twitterPost
 from listReader import generateTrainingLists
 
 chatbot = ChatBot(
-   'Ron Obvious',
-    trainer='chatterbot.trainers.ChatterBotCorpusTrainer',
+   'CST Bot',
+    logic_adapters=[
+        {
+            'import_path': 'chatterbot.logic.BestMatch'
+        },
+        {
+            'import_path': 'chatterbot.logic.LowConfidenceAdapter',
+            'threshold': 0.50,
+            'default_response': 'I dont know, I dumb. :('
+        }
+    ],
+    trainer='chatterbot.trainers.ListTrainer',
     read_only=True,
 )
 chatbot.train("chatterbot.corpus.english.conversations")

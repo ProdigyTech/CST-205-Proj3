@@ -17,6 +17,6 @@ def generateTrainingLists(fileName):
 
 def standardize(msg):
     line = msg.lower()
-    line = line.translate(None, "?.;!*&%@#^$*()+=<>|\"")
+    line = line.translate(None, "?.;!*&%@#^$*()+=<>|-\"")
     line = " ".join(line.split())
     return line
