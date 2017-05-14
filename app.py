@@ -129,7 +129,7 @@ def on_connect():
 def handle_message(messageData):
     passedContents = messageData
     if ('tweet' in passedContents):
-        tweetToSend =  passedContents[5:]
+        tweetToSend =  passedContents[6:]
         tts = gTTS(text=str("Tweet sent to twitter, check it out"), lang='en')
         tts.save("templates/media/sentMessage.mp3")
         mediaLink  = "/media/sentMessage.mp3"

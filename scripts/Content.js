@@ -81,29 +81,19 @@ export class Content extends React.Component {
               
             </div>
             <div className="container">
-            <h1 className="center title">ChatBot Chat!</h1>
+            <h1 className="center">ChatBot Chat!</h1>
             
             
               </div>
-              
-              
-              
-              
-              <div className="container scrollable">
-              <div className="talk-bubble tri-right round border left-top talk-bubble-voice">
-                    <div className="talktext">
-                        <b>I can send tweets to twitter, to start type the word tweet and then what you want me to say</b>
-                    </div>
-              </div>
-            {messageData}
-            </div>
 
             <form onSubmit={this.handleSubmit} className="form-inline">
             
              
                 
                 
-            
+            <div className="container scrollable">
+            {messageData}
+            </div>
             
             <div className="row">
             <div className="bottom-right margin col-md-offset-6">
