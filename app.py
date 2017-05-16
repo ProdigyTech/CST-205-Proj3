@@ -25,7 +25,7 @@ chatbot = ChatBot(
         },
         {
             'import_path': 'chatterbot.logic.LowConfidenceAdapter',
-            'threshold': 0.50,
+            'threshold': 0.001,
             'default_response': 'I dont know, Im dumb. :('
         }
     ],
