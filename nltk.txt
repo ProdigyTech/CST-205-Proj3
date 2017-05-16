@@ -1,0 +1,5 @@
+chatterbot.corpus.english.conversations
+chatterbot.corpus.english.greetings
+wordnet
+pros_cons
+reuters
