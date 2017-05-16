@@ -3,4 +3,3 @@ requests
 flask_socketio
 gTTS
 chatterbot
-twitterPost
