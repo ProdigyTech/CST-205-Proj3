@@ -30,7 +30,7 @@ chatbot = ChatBot(
         }
     ],
     trainer='chatterbot.trainers.ListTrainer',
-    read_only=True,
+    #read_only=True,
 )
 
 #Here we are explictly telling our chatbot to train with the unbutu english greeting corpus and the converstation corups. 
