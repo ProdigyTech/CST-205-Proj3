@@ -20,6 +20,8 @@ CST 205 Section 2
 
 ## How to run program
 Run app.py
+or 
+check it out here! https://murmuring-dusk-67725.herokuapp.com/
 
 ## Link to GitHub repository
 https://github.com/ProdigyTech/CST-205-Proj3
