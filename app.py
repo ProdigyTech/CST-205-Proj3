@@ -25,11 +25,11 @@ chatbot = ChatBot(
         },
         {
             'import_path': 'chatterbot.logic.LowConfidenceAdapter',
-            'threshold': 0.001,
+            'threshold': 0.3,
             'default_response': 'I dont know, Im dumb. :('
         }
     ],
-    trainer='chatterbot.trainers.ListTrainer',
+    trainer='chatterbot.trainers.ChatterBotCorpusTrainer',
     #read_only=True,
 )
 
