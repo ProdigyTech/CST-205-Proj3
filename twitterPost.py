@@ -1,3 +1,5 @@
+#Written by Maria L. File that allows us to send tweets to twitter from the chatbot. 
+
 import tweepy
 
 ###### TWITTER API #############################################

@@ -1,3 +1,5 @@
+#Written by Javar A. Keys for twitter account for twitter tranning. 
+
 TWITTER = {
     "CONSUMER_KEY": "S4bh974NsWn77hAbaWz9u7wFf",
     "CONSUMER_SECRET": "i4h4AjC4uuJq3x318FhsGXr6BdND2E5XkqSFjMjQibUzOclXVP",

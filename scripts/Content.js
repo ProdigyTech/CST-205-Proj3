@@ -1,3 +1,8 @@
+//Written by Javar A, Maria L. 
+// This is our client side views (React)
+// Here we are defining our elements, and connecting those elements to the server through a socket. 
+
+
 import * as React from 'react';
 import {
     Socket

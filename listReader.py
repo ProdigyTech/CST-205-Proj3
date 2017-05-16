@@ -1,3 +1,5 @@
+#Written by Daniel C. Here we are taking in a file and reading the contents to thefile and storing them.
+
 import string
 
 def generateTrainingLists(fileName):
