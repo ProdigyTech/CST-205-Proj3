@@ -3,3 +3,4 @@ requests
 flask_socketio
 gTTS
 chatterbot
+tweepy
