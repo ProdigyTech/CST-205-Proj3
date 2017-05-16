@@ -3,6 +3,11 @@
 ## Name of project
 Chatbot Chat
 
+## What is it? 
+
+Chatbot chat is an intelligent chatbot that can respond to users messages. While every attempt was made to train the chatbot, we ran into some issues with tranning so the chatbots knowlege is limited.
+The chatbot can also tweet out to twitter. The responses from the chatbot are in mp3 format and are sent from the server to the client for playback.
+
 ## Names of team members
 
 Daniel Crews, Javar Alexander, Maria Loza 
